@@ -88,3 +88,14 @@ JWT token
 npm install jsonwebtoken (biblioteca que gera um token no padrão jwt)
 
 md5 - geração de hash. -> config (importar dele para o service)
+
+
+
+
+COMANDOS
+docker run --name webtechpostgres -e POSTGRES_PASSWORD=root -d -p 5432:5432 postgres:alpine
+
+-CRIAR O BANCO DE DADOS NO docker
+docker exec -it webtechpostgres bash
+psql -U postgres
+CREATE DATABASE webtech; 

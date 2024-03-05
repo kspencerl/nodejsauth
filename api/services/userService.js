@@ -8,14 +8,16 @@ class UserService{
     async register(dto){ //dto - modelo do usuário
         //buscar na base de dados se esse usuário já existe
         const user = await database.users.findOne({
-            email: dto.email
+            where: {
+            email: dto.email }
         })
         //verificar se o usuário já está cadastrado
         if (user){
+            console.log(user)
             throw new Error('This user already exists with this email.')
         }
 
-        try {
+        try  {
             //criptografia da senha
             const passwordHash = await hash(dto.password, 8)  //senha e salt
 

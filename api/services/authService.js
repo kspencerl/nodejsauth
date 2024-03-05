@@ -11,7 +11,7 @@ class AuthService{
     async login(dto){
         //BUSCAR USUÁRIO
         const user = await database.users.findOne({
-            attributes: ['id', 'email', 'senha'], //array - definindo colunas
+            attributes: ['id', 'email', 'password'], //array - definindo colunas
             where: {
                 email: dto.email
             }
@@ -22,7 +22,8 @@ class AuthService{
         }
 
         //VALIDAR SENHA
-        const equalpasswords = compare(dto.password, user.password) //senha do dto, senha do banco de dados
+        const equalpasswords = await compare(dto.password, user.password) //senha do dto, senha do banco de dados
+        
         if(!equalpasswords){
             throw new Error('Invalid username/email or password')
         }

@@ -3,3 +3,4 @@ module.exports = {
 }
 //hash criada no md5
 //padrão md5, geração de um hash por meio do site https://www.md5.cz/ para o nosso site, na parte de authService
+//hash padrão

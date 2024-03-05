@@ -1,7 +1,7 @@
 const database = require('../models')  // ../ sair da nossa pasta
 
 //função compare da bibliote bcrypt.js que retorna um valor boleano
-const { compare } = require('bcrypt.js')
+const { compare } = require('bcrypt')
 
 const { sign } = require('jsonwebtoken') //função que faz a geração do token
 const jsonSecret = require('../config/jsonSecret')
@@ -34,14 +34,13 @@ class AuthService{
 
         },//<-sign(PAYLOAD (informações do usuário): string | object | Buffer
         //* a seguir o secret, código único para o nosso projeto. Vamos usar o md5 https://www.md5.cz/
-        jsonSecret.secret,
+        jsonSecret.secret, //hash padrão no config
         //SignOptions & { algorithm: "none"; }) | undefined): string 
-        //*quanto tempo leva para o nosso token expirar
-        {
+        { //*tempo para o nosso token expirar
             expiresIn: 86400 //um dia em segundos
         })  
 
-        return { accessToken } //retornando token
+        return { accessToken } //retornando token dentro da variável accessToken
 
     }
 

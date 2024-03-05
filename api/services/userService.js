@@ -1,6 +1,6 @@
 const database = require('../models') //arquivo index em models já faz referencia a todas as nossas models
 //criptografia de senha
-const { hash } = require('bcryptjs')
+const { hash } = require('bcrypt')
 const UUID = require('uuid')
 
 class UserService{

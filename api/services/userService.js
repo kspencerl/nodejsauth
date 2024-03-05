@@ -13,7 +13,7 @@ class UserService{
         })
         //verificar se o usuário já está cadastrado
         if (user){
-            console.log(user)
+            //console.log(user)
             throw new Error('This user already exists with this email.')
         }
 

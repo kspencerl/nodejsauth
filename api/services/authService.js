@@ -28,7 +28,7 @@ class AuthService{
             throw new Error('Invalid username/email or password')
         }
 
-        //Função sign faz a geração do nosso token
+        //Função SIGN faz a geração do nosso token
         const accessToken = sign({
             id: user.id,
             email: user.email

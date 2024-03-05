@@ -99,3 +99,6 @@ docker run --name webtechpostgres -e POSTGRES_PASSWORD=root -d -p 5432:5432 post
 docker exec -it webtechpostgres bash
 psql -U postgres
 CREATE DATABASE webtech; 
+
+
+CRIAÇÃO DA PASTA middleware

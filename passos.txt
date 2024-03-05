@@ -1,0 +1,90 @@
+npm init
+    (cria o package.json, que contém informações gerais sobre o seu projeto [versão, nome...])
+npm install
+    (instala as dependências do node, seja as normais[padrão], seja as a mais que foram definidas no seu package.json)
+
+
+CRIAÇÃO DE ROTAS DE USUÁRIOS E DE TABELAS DO BANCO DE DADOS
+
+npm install sequelize    [ORM para o JavaScript - mapeamento e modelagem de dados]
+npm install sequelize-cli  (para criação de modelos)
+    - adicione sequelize nos script:
+        "scripts": {
+            "sequelize": "sequelize"
+        }
+
+
+    Criando modelo:
+sequelize init   (inicializa a estrutura do projeto. Criará estrutura básica: models, config, migrations e seeders)
+sequelize model:create --name users --attributes name:string,email:string,password:string
+    (criando tabela users com coluna nome, email e password)
+    dados versão: Sequelize CLI [Node: 20.11.0, CLI: 6.6.2, ORM: 6.37.1]
+
+
+    Ajustes na estrutura para garantir mais segurança:
+        - em migrations no novo file criado , na parte ID, remova o autoincrement true, tire o tipo INTEGER dele (isso pode prejudicar a seguranca), troque para type: Sequelize.UUid e adicione defaultValue: Sequelize.UUID. Isso garantirá mais segurança a nossa tabela.
+
+        - em models, na tabela criada (users), adicione: defaultScope: {
+            attributes: {
+                exclude: ['password']
+            }
+        }
+        Isso vai garantir maior segurança em relação aos dados que serão retornados, pois excluiremos o retorno da senha no escopo.
+
+    Crie a pasta routes e adicione usersRoute.js para definir rotas para usuários
+
+    Temos importar a função Router do Express.
+    1. Instale o Express.js (npm install express)
+    a)---- próximos passos explicados no file usersRoute.js
+    b) explicação em /routes/index.js ---> concentração de rotas (opcional)
+
+
+    Para executar um arquivo, comando: node nomearquivo.js
+    Mas conforme o projeto vai aumentando, precisamos automatizar esse processo
+    No package.json podemos definir scripts para rodar certa "propriedade' de acordo com os parâmetros definidos nela. A título de exemplo:
+        "scripts": { 
+            "dev": "node ola.js",
+            "start": "node teste.js"
+        }
+        o comando no terminal seria: npm run dev .... isso iria rodar a pasta index.js
+    Podemos criar várias 'propriedades' com o que elas irão executar. Por enquanto isso foi só uma explicação
+
+
+CRIAÇÃO DE USUÁRIOS
+    1. folder controllers --> file user controller (permitir exportar classe)
+    2. folder services  ---> file userService (permitir exportar classe)
+    3. exportar userService em userController
+    4. (trabalhando na userService)
+    [controller e service]
+
+CRIPTOGRAFAR SENHA DO USUÁRIO
+npm install bcryptjs
+em userService vamos importar a função hash para criptografar a senha do usuário a partir da biblioteca bcryptjs
+hash em service
+
+
+exportando userController para userRoute
+ no path de cada rota, adicione o controller para a ação desejada
+
+
+npm install nodemon --save-dev
+
+Em config.json, lembre-se de verificar se o nome do banco de dados corresponde ao nome do banco que você criou.
+
+npm install pg
+
+sequelize db:migrate
+
+configure o script "start" para nodemon ./api/index.js
+
+
+lembre de configurar os PASSOS DOCKER (rodando postgres bd)
+
+
+
+CRIAÇÃO DE AUTH
+
+JWT token
+npm install jsonwebtoken (biblioteca que gera um token no padrão jwt)
+
+md5 - geração de hash. -> config (importar dele para o service)

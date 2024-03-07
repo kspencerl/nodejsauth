@@ -7,11 +7,11 @@ const jsonSecret = require('../config/jsonSecret')
 module.exports = async (req, res, next) =>{
     const token = req.headers.authorization
 
-    if (token) { 
-        res.status(401).send('Access token não informado')
+    if (!token) { 
+        return res.status(401).send('Access token não informado')
     }
     //quebrar token
-    const [,accessToken] = token.split(" ")
+    const [, accessToken] = token.split(" ")
             //pegar segunda variável
 
     try {
@@ -24,7 +24,7 @@ module.exports = async (req, res, next) =>{
         req.userId = id
         req.userEmail = email
 
-        return next ()
+        return next()
 
     } catch (error) {
         res.status(401).send('Usuário não autorizado')

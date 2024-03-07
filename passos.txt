@@ -101,4 +101,10 @@ psql -U postgres
 CREATE DATABASE webtech; 
 
 
-CRIAÇÃO DA PASTA middleware
+
+criação do token (authservice)
+CRIAÇÃO do middleware (validação do token)
+
+
+JWT - JSON Web Token
+{header, payload e signature}

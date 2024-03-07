@@ -24,7 +24,7 @@ module.exports = async (req, res, next) =>{
         req.userId = id
         req.userEmail = email
 
-        return next 
+        return next ()
 
     } catch (error) {
         res.status(401).send('Usuário não autorizado')

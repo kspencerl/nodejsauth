@@ -33,8 +33,15 @@ class UserService{
         } catch (error) {
             throw new Error('Error while registering this new user.')           
         }
+    }
 
-
+    async all(){
+        try {
+            const users = await database.users.findAll()
+            return users
+        } catch (error) {
+            throw new Error('Error while getting all users.')
+        }
     }
 
 }

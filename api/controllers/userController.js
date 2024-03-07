@@ -15,6 +15,16 @@ class UserController{
             res.status(400).send({ message: error.message })
         }
     }
+
+
+    static async all(req, res){
+        try {
+            const users = await userService.all()
+            res.status(200).send(users)            
+        } catch (error) {
+            res.status(400).send({ message: error.message })
+        }
+    }
 }
 
 //permitindo exportação

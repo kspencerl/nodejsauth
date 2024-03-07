@@ -42,8 +42,6 @@ class AuthService{
         })  
 
         return { accessToken } //retornando token dentro da variável accessToken
-
     }
-
 }
 module.exports = AuthService;

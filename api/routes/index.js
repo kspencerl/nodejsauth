@@ -10,10 +10,10 @@ const auth = require('./authRoute')
 const bodyParser = require('body-parser')//middleware de análise de corpo processar os dados enviados no corpo das solicitações HTTP
 
 module.exports = app => {
-    app.use(
+    app.use(//ordem importa
         bodyParser.json(), //Isso permitirá que o Express analise automaticamente o corpo das solicitações com formato JSON.
-        user,
-        auth
+        auth, 
+        user
     )
 }
 
